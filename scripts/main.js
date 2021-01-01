@@ -5,12 +5,11 @@ const range = (m, n) => [...(function* (p, q) {
 })(m, n)];
 
 const ids = range(1, 256);
-const data = ids.map(n => ([n, r(20), r(50), `2020-11-${n % 30 + 1}`]));
+const data = ids.map(n => ([`2020-11-${n % 30 + 1}`, r(20), r(50)]));
 console.table(data);
 
-const headers = [{ label: 'id', type: 'string' },
+const headers = [{ label: 'Date', type: 'string' },
 { label: 'Company', type: 'number' },
-{ label: 'Date', type: 'string' },
 { label: 'Country', type: 'number' }];
 
 // Load the Visualization API and the corechart package.
@@ -33,6 +32,6 @@ function drawChart() {
     };
 
     // Instantiate and draw our chart, passing in some options.
-    const chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    const chart = new google.visualization.Histogram(document.getElementById('chart_div'));
     chart.draw(dtable, options);
 }
